@@ -1,0 +1,418 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #212121;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-element {
+    opacity: 0;
+}
+
+.fade-in-element.animate {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+h2{
+    color: white;
+}
+
+#colorblanco{
+    color: white;
+    font-size: 20px;
+}
+
+#titulomodalblanco{
+    color: black;
+}
+
+#msjaldia{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+header {
+    background-color: #212121;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav {
+    margin-top: 1rem;
+}
+
+button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 12px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+
+    transition: all .3s ease;
+}
+
+nav>button:hover {
+    transform: translateY(-2px);
+}
+
+#mainContent {
+    padding: 2rem;
+}
+
+.calendar-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1.5%;
+    gap: 25px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    width: 45% !important;
+    height: 625px;
+    margin: 0 auto;
+
+    color: white;
+}
+@media (width < 1400px) and (width > 750px){
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        width: 48% !important;
+        height: 430px;
+        margin: 0 auto;
+    }
+}
+@media (width < 750px){
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        width: 100% !important;
+        height: 295px;
+        margin: 0 auto;
+        margin-left: -28px;
+    }
+    .calendar-header{
+        padding-bottom: 2.5%;
+        margin-top: -7%;
+    }
+    .day-name{
+        width: 27px;
+
+        font-size: 12px;
+    }
+    #colorblanco{
+        color: white;
+        font-size: 20px;
+    }
+    .studentitem2{
+        display: flex;
+        flex-direction: column;
+    }
+    .nombreclass{
+        display: flex;
+        gap: 25px;
+    }
+    .btnpreauspay{
+        display: flex;
+        gap: 0 !important;
+    }
+    .student-list{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 5px !important;
+    }
+    nav>button {
+        padding: 8px 18px;
+    }
+    .pending-count {
+        width: 15px !important;
+        height: 15px !important;
+        line-height: 15px !important;
+    }
+    img{
+        display: none;
+    }
+}
+
+.calendar-day {
+    background-color: transparent;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    font-weight: 600;
+    transition: all .35s ease;
+    border-radius: 14%;
+}
+.calendar-day:hover {
+    /*background-color: rgb(53, 53, 255);*/
+    background-color: #007BFF;
+    border-radius: 14%;
+}
+
+.empty{
+    background-color: transparent;
+    /*border: 1px solid black;*/
+}
+.empty:hover{
+    background-color: transparent;
+    cursor: default;
+}
+
+.day-name{
+    background-color: transparent;
+    border: 2px solid /*rgb(53, 53, 255)*/#007BFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14%;
+    font-weight: normal !important;
+}
+.day-name:hover{
+    background-color: transparent;
+    border: 2px solid /*rgb(53, 53, 255)*/ #007BFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border-radius: 0%;*/
+    cursor: default;
+}
+
+.calendar-day.has-events {
+    background-color: #007BFF /*#0067d4*/;
+    border-radius: 14%;
+}
+
+.calendar-day.today {
+    border: 2px solid white;
+    border-radius: 14%;
+}
+
+
+.student-list, .payment-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.student-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.payment-item{
+    display: flex;
+}
+.payment-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.student-item{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nombreclass{
+    display: flex;
+    gap: 25px;
+}
+
+.student-item, .payment-item {
+    background-color: white;
+    /*border: 1px solid #ddd;*/
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+
+    border-radius: 14px;
+}
+
+.group-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#addStudentForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#addStudentForm input{
+    padding: 8px;
+    border: 1px solid black;
+
+    border-radius: 10px;
+}
+
+#addGroupForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#addGroupForm select{
+    padding: 8px;
+    border: 1px solid black;
+
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.present {
+    background-color: #00c200;
+    color: white;
+}
+
+.absent {
+    background-color: #FF0015;
+    color: white;
+}
+
+.paid {
+    background-color: #ffe600;
+    color: black;
+}
+
+.btnPresent.present {
+    background-color: #00c200;
+    color: white;
+}
+
+.btnPresent{
+    background-color: rgb(124, 124, 124);
+
+    transition: all .3s ease;
+}
+
+.btnAbsent.absent {
+    background-color: #FF0015;
+    color: white;
+}
+
+.btnAbsent{
+    background-color: rgb(124, 124, 124);
+}
+
+.btnPaid.paid {
+    background-color: #ffe600;
+    color: black;
+}
+
+.btnPaid{
+    background-color: rgb(124, 124, 124);
+}
+
+#mainContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-item{
+    display: flex;
+    justify-content: center;
+}
+
+#btnPagosPendientes {
+    position: relative;
+  }
+  
+  .pending-count {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background-color: /*#b700ff*/ #bf51ff;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+}
+  
+
+img{
+    position: absolute;
+    width: 232.5px;
+    height: auto;
+    bottom: 10%;
+    right: 2.5%;
+}
+#imgComponente1{
+    bottom: 25%;
+    left: 3.5%;
+}
